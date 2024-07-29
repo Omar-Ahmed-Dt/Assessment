@@ -84,7 +84,6 @@ stack: v1.#Stack & {
                                         },
                                 ]
                         }
-
                 }
 
                 dnsutils: {
@@ -98,6 +97,39 @@ stack: v1.#Stack & {
                         }
                 }
 
+                rabbitmqIngress: {
+                        traits.#Ingress
+                        k8s: {
+                                namespace: "rabbitmq"
+                        }
+                        ingress: {
+                                metadata: {
+                                        name: "rabbitmq-ingress"
+                                        annotations: {
+                                                "nginx.ingress.kubernetes.io/rewrite-target": "/"
+                                        }
+                                }
+                                spec: {
+                                        rules: [{
+                                                host: "rabbitmqtesting.com"
+                                                http: {
+                                                        paths: [{
+                                                                path: "/"
+                                                                pathType: "Prefix"
+                                                                backend: {
+                                                                        service: {
+                                                                                name: "rabbitmq"
+                                                                                port: {
+                                                                                        number: 15672
+                                                                                }
+                                                                        }
+                                                                }
+                                                        }]
+                                                }
+                                        }]
+                                }
+                        }
+                }
         }
 }
 
