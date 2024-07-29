@@ -15,7 +15,7 @@ spec:
   triggers:
     - type: rabbitmq
       metadata:
-        value: "20"
+        value: "1000"
         queueName: queue
         mode: MessageRate
         hostFromEnv: RABBIT_MQ_URI

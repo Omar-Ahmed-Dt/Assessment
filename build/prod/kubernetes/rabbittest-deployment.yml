@@ -25,7 +25,7 @@ spec:
             - --queue
             - queue
             - --rate
-            - "10"
+            - "10000"
           env:
             - name: RABBIT_MQ_URI
               value: amqp://default_user_CEp19JlfPtw3PciCnK5:aJo_RRJZvSK_fwMvuyFAaCUsX2mZ0A8z@rabbit.rabbitmq.svc.cluster.local:5672
